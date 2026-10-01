@@ -1,0 +1,18 @@
+# Runs the repro on the dev box: dev-mode Phoenix on :4100, published through
+# the `repro-dev-eu` Cloudflare tunnel (see ../cloudflared.env) as
+# https://hologram-nested-guard.repro.jan-wirth.dev.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      MIX_ENV: dev
+      HOLOGRAM_START: "1"
+      PORT: "4100"
+    ports:
+      - "127.0.0.1:4100:4100"
+    # _build and deps stay in the checkout: Hologram's compiler renames its
+    # bundles from _build into priv/static, which fails across two mounts.
+    volumes:
+      - .:/app
