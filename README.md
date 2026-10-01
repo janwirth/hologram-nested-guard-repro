@@ -1,7 +1,7 @@
 # Hologram repro: a 600-way `in` guard breaks the client bundle in Firefox
 
 Minimal reproduction, forked from [hologram_skeleton](https://github.com/bartblast/hologram_skeleton).
-Live at https://hologram-nested-guard.repro.jan-wirth.dev.
+Live at https://hologram-nested-guard-repro.jan-wirth.dev.
 
 ## The bug
 

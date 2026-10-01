@@ -1,6 +1,6 @@
 # Runs the repro on the dev box: dev-mode Phoenix on :4100, published through
 # the `repro-dev-eu` Cloudflare tunnel (see ../cloudflared.env) as
-# https://hologram-nested-guard.repro.jan-wirth.dev.
+# https://hologram-nested-guard-repro.jan-wirth.dev.
 services:
   app:
     build:
