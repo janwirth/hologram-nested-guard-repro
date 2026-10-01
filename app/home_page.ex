@@ -8,8 +8,9 @@ defmodule HologramSkeleton.HomePage do
   left-nested chain of `:erlang.orelse` calls. The encoder emits one nested
   closure per operand, and one nested blame object per operand for the
   function clause heads, so `known_zone?/1` below becomes a 600-deep
-  expression in the page bundle. Chrome parses it only because its default
-  JS stack is large enough; `--js-flags=--stack-size=300` makes it fail too.
+  expression in the page bundle. Chrome's parser copes with 600, but the
+  depth grows with every operand and a real app's runtime bundle overflowed
+  it on a machine with a smaller default stack (dead clicks).
   """
   use Hologram.Page
 

@@ -22,9 +22,11 @@ function's clause heads, so the page bundle carries a 600-deep expression.
 - **Firefox**: the bundle fails to parse — `InternalError: too much recursion`
   (or `function nested too deeply`) in the console right after
   `Hologram: page script executed`. Nothing on the page reacts to a click.
-- **Chrome**: works only because its default JS stack is large; launch it with
-  `--js-flags=--stack-size=300` and the bundle fails with
-  `RangeError: Maximum call stack size exceeded`.
+- **Chrome**: parses this one — V8's nesting limit is higher — but the
+  depth grows with every operand, and a real app's runtime bundle (ex_cldr's
+  601-name guard plus everything around it) overflowed V8's parser stack on a
+  machine with a smaller default stack: `RangeError: Maximum call stack size
+  exceeded`, and dead clicks.
 
 First hit in a real app through ex_cldr's `Cldr.Validity.U.encode_key/2`, a
 function with an `in` guard over the 601 IANA time-zone names. Hologram stubs
